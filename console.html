@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>QSRC // owner console</title>
+  <style>
+    :root {
+      --bg: #07080b; --bg2: #0d1016; --panel: #12151c; --line: #242a36;
+      --text: #e7ecf3; --muted: #8b95a8; --teal: #3ee0c5; --gold: #e4c36b;
+      --crit: #ff5d6c; --high: #ff9f43; --med: #f6d365; --low: #6ee7b7; --ok: #5eead4;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.45 "Segoe UI", sans-serif; }
+    button, input { font: inherit; }
+    a { color: var(--teal); }
+    .app { min-height: 100dvh; display: grid; grid-template-rows: auto 1fr auto; }
+    header, footer { border-bottom: 1px solid var(--line); padding: 14px 22px; display: flex; gap: 16px; align-items: center; justify-content: space-between; background: #0a0c11; }
+    footer { border-bottom: 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+    .brand { display: flex; gap: 12px; align-items: center; }
+    .mark { width: 34px; height: 34px; border: 1px solid var(--teal); display: grid; place-items: center; color: var(--teal); font-size: 11px; }
+    h1 { margin: 0; font-size: 15px; letter-spacing: .08em; text-transform: uppercase; }
+    .sub, .muted { color: var(--muted); font-size: 12px; }
+    .pills { display: flex; gap: 8px; flex-wrap: wrap; }
+    .pill { border: 1px solid var(--line); padding: 4px 8px; font-size: 11px; text-transform: uppercase; color: var(--muted); }
+    .pill.live { color: var(--ok); border-color: #1d4a44; }
+    .pill.hold { color: var(--gold); border-color: #4a3f1d; }
+    nav { display: flex; gap: 6px; padding: 10px 22px; border-bottom: 1px solid var(--line); background: var(--bg2); flex-wrap: wrap; }
+    nav button { background: transparent; color: var(--muted); border: 1px solid transparent; padding: 7px 11px; cursor: pointer; }
+    nav button.on { color: var(--text); border-color: var(--line); background: var(--panel); }
+    main { padding: 20px 22px 40px; }
+    .grid { display: grid; gap: 14px; }
+    .g2 { grid-template-columns: 1.2fr .8fr; }
+    .g4 { grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 980px) { .g2, .g4 { grid-template-columns: 1fr; } }
+    .card { background: var(--panel); border: 1px solid var(--line); padding: 16px; }
+    .card h2 { margin: 0 0 10px; font-size: 13px; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); }
+    .kpi { font-size: 28px; font-weight: 600; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { color: var(--muted); font-size: 11px; text-transform: uppercase; }
+    .CRITICAL { color: var(--crit); } .HIGH { color: var(--high); } .MEDIUM { color: var(--med); } .LOW { color: var(--low); }
+    .agent { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+    .dot { width: 8px; height: 8px; margin-top: 6px; background: var(--teal); border-radius: 50%; }
+    pre, .mono { font-family: ui-monospace, monospace; font-size: 12px; }
+    pre { background: #0a0c11; border: 1px solid var(--line); padding: 12px; overflow: auto; color: #c9d4e3; }
+    .row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+    .btn { background: #1a2030; color: var(--text); border: 1px solid var(--line); padding: 8px 12px; cursor: pointer; }
+    .btn.primary { border-color: var(--teal); color: var(--teal); }
+    .btn.danger { border-color: var(--crit); color: var(--crit); }
+    .btn:disabled { opacity: .4; cursor: not-allowed; }
+    textarea { width: 100%; min-height: 90px; background: #0a0c11; color: var(--text); border: 1px solid var(--line); padding: 10px; }
+    .banner { border: 1px solid #4a3f1d; background: #16120a; color: var(--gold); padding: 10px 12px; margin-bottom: 14px; }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="brand"><div class="mark">Q</div><div><h1>Quantum Super Repair Computer</h1><div class="sub">Private invite-only control plane · superrep2</div></div></div>
+      <div class="pills"><span class="pill live">observe-only</span><span class="pill hold">high-risk gated</span><span class="pill">private repo</span></div>
+    </header>
+    <nav>
+      <button class="on" data-tab="bridge">Bridge</button>
+      <button data-tab="team">Agent team</button>
+      <button data-tab="queue">Approval queue</button>
+      <button data-tab="findings">Findings</button>
+      <button data-tab="log">Ledger</button>
+    </nav>
+    <main>
+      <section id="bridge">
+        <div class="banner">Private review copy. Mutate stays off. A-01 denied. A-02 pending. A-03–A-10 approved on paper.</div>
+        <div class="grid g4">
+          <div class="card"><div class="muted">Mode</div><div class="kpi">HOLD</div></div>
+          <div class="card"><div class="muted">Pending</div><div class="kpi">1</div><div class="muted">A-02 only</div></div>
+          <div class="card"><div class="muted">Repo</div><div class="kpi" style="font-size:16px">private</div></div>
+          <div class="card"><div class="muted">Highest open</div><div class="kpi CRITICAL">A-02</div></div>
+        </div>
+        <div class="card" style="margin-top:14px">
+          <h2>Owner command (local only)</h2>
+          <textarea id="cmd" placeholder="approve A-02 or deny A-02"></textarea>
+          <div class="row"><button class="btn primary" id="parse">Parse</button><button class="btn" id="export">Download ledger.json</button></div>
+          <p id="parseOut" class="muted"></p>
+        </div>
+      </section>
+      <section id="team" class="hidden">
+        <div class="card">
+          <h2>Duty roster</h2>
+          <div class="agent"><div class="dot"></div><div><strong>Sentinel</strong><div class="muted">Public watch only</div></div></div>
+          <div class="agent"><div class="dot"></div><div><strong>Gatekeeper</strong><div class="muted">Auth drafts. Cannot publish.</div></div></div>
+          <div class="agent"><div class="dot"></div><div><strong>Archivist / Mesh / Publisher / Identity / Counsel</strong><div class="muted">See PLAYBOOK.md</div></div></div>
+        </div>
+      </section>
+      <section id="queue" class="hidden">
+        <div class="card">
+          <h2>Queue</h2>
+          <table>
+            <tr><td class="mono">A-01</td><td class="CRITICAL">DENIED</td><td>Keep Help bypass</td></tr>
+            <tr><td class="mono">A-02</td><td class="CRITICAL">PENDING</td><td>Server-enforce Better Auth</td></tr>
+            <tr><td class="mono">A-03–A-10</td><td class="HIGH">APPROVED</td><td>See OWNER_RUNBOOK.md</td></tr>
+          </table>
+        </div>
+      </section>
+      <section id="findings" class="hidden">
+        <div class="card">
+          <h2>Findings</h2>
+          <p>F-01 bypass is documented and owner-denied to remove. F-03 guest IP/geo still an approved repair (A-03) waiting on Grok Build.</p>
+        </div>
+      </section>
+      <section id="log" class="hidden"><div class="card"><h2>Ledger</h2><pre id="ledger"></pre></div></section>
+    </main>
+    <footer><span>Invite-only. No HIGH/CRITICAL execute from this page.</span></footer>
+  </div>
+  <script>
+    const ledger = {
+      created: "2026-09-18T15:24:00-05:00",
+      mode: "HOLD",
+      approvals: {
+        "A-01": { decision: "deny", note: "Deny a-01", at: "2026-09-18T15:33:00-05:00" },
+        "A-03": { decision: "approve", at: "2026-09-18T15:35:00-05:00" },
+        "A-04": { decision: "approve", at: "2026-09-18T15:35:00-05:00" },
+        "A-05": { decision: "approve", at: "2026-09-18T15:35:00-05:00" },
+        "A-06": { decision: "approve", at: "2026-09-18T15:35:00-05:00" },
+        "A-07": { decision: "approve", at: "2026-09-18T15:35:00-05:00" },
+        "A-08": { decision: "approve", at: "2026-09-18T15:35:00-05:00" },
+        "A-09": { decision: "approve", at: "2026-09-18T15:35:00-05:00" },
+        "A-10": { decision: "approve", at: "2026-09-18T15:35:00-05:00" }
+      },
+      events: [
+        { t: "2026-09-18T15:33:00-05:00", ev: "Owner DENY A-01" },
+        { t: "2026-09-18T15:35:00-05:00", ev: "Owner APPROVE A-03 through A-10" },
+        { t: "2026-09-18T15:56:00-05:00", ev: "Private review tree uploaded to superrep2/qsrc-control-plane" }
+      ]
+    };
+    const $ = (s) => document.querySelector(s);
+    function renderLedger() { $("#ledger").textContent = JSON.stringify(ledger, null, 2); }
+    renderLedger();
+    document.querySelectorAll("nav button").forEach((b) => {
+      b.addEventListener("click", () => {
+        document.querySelectorAll("nav button").forEach((x) => x.classList.remove("on"));
+        b.classList.add("on");
+        document.querySelectorAll("main > section").forEach((s) => s.classList.add("hidden"));
+        document.getElementById(b.dataset.tab).classList.remove("hidden");
+      });
+    });
+    $("#parse").addEventListener("click", () => {
+      const raw = $("#cmd").value.trim();
+      const m = raw.match(/^(approve|deny)\s+(A-\d{2})\b/i);
+      if (!m) { $("#parseOut").textContent = "Use: approve A-02 or deny A-02"; return; }
+      const act = m[1].toLowerCase(), id = m[2].toUpperCase();
+      ledger.approvals[id] = { decision: act, note: raw, at: new Date().toISOString() };
+      ledger.events.push({ t: new Date().toISOString(), ev: "Owner " + act + " " + id + " local only" });
+      renderLedger();
+      $("#parseOut").textContent = id + " " + act + " recorded in this browser copy only.";
+    });
+    $("#export").addEventListener("click", () => {
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(new Blob([JSON.stringify(ledger, null, 2)], { type: "application/json" }));
+      a.download = "qsrc-ledger.json";
+      a.click();
+    });
+  </script>
+</body>
+</html>
