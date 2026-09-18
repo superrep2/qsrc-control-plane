@@ -1,0 +1,12 @@
+.DS_Store
+*.pem
+*.key
+.env
+.env.*
+auth.json
+mcp_credentials.json
+**/secrets/
+*.p12
+*.pfx
+qsrc-ledger.local.json
+node_modules/
