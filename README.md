@@ -17,6 +17,9 @@ High-risk execute buttons stay dead on purpose.
 | Path | Role |
 |---|---|
 | `console.html` | Operator console |
+| `packet-2026-09-24.html` | Public source packet index |
+| `docs/2026-09-24-technical-deep-dive.pdf` | Session technical deep dive (24 Sep 2026) |
+| `docs/DOJ_Dockets_Outer_Space_Theories_Briefing.pdf` | Public-record DOJ / space / UAP dockets briefing |
 | `PLAYBOOK.md` | Who may observe vs mutate |
 | `APPROVAL_LEDGER.md` | A-01 deny; A-02 pending; A-03–A-10 approved |
 | `OWNER_RUNBOOK.md` | Clicks only the owner can make |
